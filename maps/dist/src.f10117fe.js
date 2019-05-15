@@ -85122,6 +85122,35 @@ function () {
 }();
 
 exports.User = User;
+},{"faker":"node_modules/faker/index.js"}],"src/Company.ts":[function(require,module,exports) {
+"use strict";
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+exports.__esModule = true;
+
+var faker_1 = __importDefault(require("faker"));
+
+var Company =
+/** @class */
+function () {
+  function Company() {
+    this.companyName = faker_1["default"].company.companyName();
+    this.catchPhrase = faker_1["default"].company.catchPhrase();
+    this.location = {
+      lat: parseFloat(faker_1["default"].address.latitude()),
+      lng: parseFloat(faker_1["default"].address.longitude())
+    };
+  }
+
+  return Company;
+}();
+
+exports.Company = Company;
 },{"faker":"node_modules/faker/index.js"}],"src/index.ts":[function(require,module,exports) {
 "use strict";
 
@@ -85129,9 +85158,13 @@ exports.__esModule = true;
 
 var User_1 = require("./User");
 
+var Company_1 = require("./Company");
+
 var user = new User_1.User();
 console.log(user);
-},{"./User":"src/User.ts"}],"../../../../.npm-packages/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var company = new Company_1.Company();
+console.log(company);
+},{"./User":"src/User.ts","./Company":"src/Company.ts"}],"../../../../.npm-packages/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
