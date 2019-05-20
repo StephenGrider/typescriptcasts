@@ -1,1 +1,1 @@
-console.log('Hi there');
+import fs from 'fs';
