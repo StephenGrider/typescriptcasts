@@ -5,8 +5,10 @@ const matches = fs
     encoding: 'utf-8'
   })
   .split('\n')
-  .map(row => {
-    return row.split(',');
-  });
+  .map(
+    (row: string): string[] => {
+      return row.split(',');
+    }
+  );
 
 console.log(matches);
