@@ -1,14 +1,12 @@
 import fs from 'fs';
 
-const data = fs
+const matches = fs
   .readFileSync('football.csv', {
     encoding: 'utf-8'
   })
   .split('\n')
-  .map(
-    (row: string): string[] => {
-      return row.split(',');
-    }
-  );
+  .map(row => {
+    return row.split(',');
+  });
 
-console.log(data);
+console.log(matches);
