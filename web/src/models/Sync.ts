@@ -8,13 +8,13 @@ export class Sync {
     return axios.get(`${this.rootUrl}/${id}`);
   }
 
-  save(data: UserProps): void {
+  save(data: UserProps): AxiosPromise {
     const { id } = data;
 
     if (id) {
-      axios.put(`${this.rootUrl}/${id}`, data);
+      return axios.put(`${this.rootUrl}/${id}`, data);
     } else {
-      axios.post(this.rootUrl, data);
+      return axios.post(this.rootUrl, data);
     }
   }
 }
