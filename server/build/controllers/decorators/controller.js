@@ -10,8 +10,9 @@ function controller(routePrefix) {
             var routeHandler = target.prototype[key];
             var path = Reflect.getMetadata(MetadataKeys_1.MetadataKeys.path, target.prototype, key);
             var method = Reflect.getMetadata(MetadataKeys_1.MetadataKeys.method, target.prototype, key);
+            var middlewares = Reflect.getMetadata(MetadataKeys_1.MetadataKeys.middleware, target, key) || [];
             if (path) {
-                router[method]("" + routePrefix + path, routeHandler);
+                router[method].apply(router, ["" + routePrefix + path].concat(middlewares, [routeHandler]));
             }
         }
     };
