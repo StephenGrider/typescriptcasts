@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Todo, fetchTodos, deleteTodo } from '../actions';
+import { ThunkDispatch } from 'redux-thunk';
+import { Todo, Action, fetchTodos, deleteTodo } from '../actions';
 import { StoreState } from '../reducers';
 
 interface AppProps {
   todos: Todo[];
-  fetchTodos: Function;
-  deleteTodo: typeof deleteTodo;
+  fetchTodos(): void;
+  deleteTodo(id: number): void;
 }
 
 interface AppState {
@@ -60,7 +61,19 @@ const mapStateToProps = ({ todos }: StoreState): { todos: Todo[] } => {
   return { todos };
 };
 
+const mapDispatchToProps = (dispatch: ThunkDispatch<StoreState, null, Action>): {
+  fetchTodos(): void;
+  deleteTodo(id: number): void;
+} => ({
+  fetchTodos(): void {
+    dispatch(fetchTodos());
+  },
+  deleteTodo(id: number): void {
+    dispatch(deleteTodo(id));
+  }
+});
+
 export const App = connect(
   mapStateToProps,
-  { fetchTodos, deleteTodo }
+  mapDispatchToProps
 )(_App);
