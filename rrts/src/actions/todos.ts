@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
+import { ThunkAction } from 'redux-thunk';
 import { ActionTypes } from './types';
+import { StoreState } from '../reducers';
 
 export interface Todo {
   id: number;
@@ -20,11 +22,11 @@ export interface DeleteTodoAction {
 
 const url = 'https://jsonplaceholder.typicode.com/todos';
 
-export const fetchTodos = () => {
-  return async (dispatch: Dispatch) => {
+export const fetchTodos = (): ThunkAction<Promise<void>, StoreState, null, FetchTodosAction> => {
+  return async (dispatch: Dispatch<FetchTodosAction>): Promise<void> => {
     const response = await axios.get<Todo[]>(url);
 
-    dispatch<FetchTodosAction>({
+    dispatch({
       type: ActionTypes.fetchTodos,
       payload: response.data
     });
