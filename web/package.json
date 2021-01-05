@@ -3,7 +3,7 @@
     "typescript": "^3.4.5"
   },
   "dependencies": {
-    "axios": "^0.18.0"
+    "axios": "^0.21.1"
   },
   "scripts": {
     "start:db": "json-server -w db.json",
