@@ -5,8 +5,10 @@ export class Attributes<T> {
     return this.data[key];
   };
 
-  set(update: T): void {
-    Object.assign(this.data, update);
+  set(update: T) {
+    for (let data in update) {
+      this.data[data] = update[data];
+    }
   }
 
   getAll(): T {
